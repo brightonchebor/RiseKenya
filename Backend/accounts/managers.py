@@ -13,14 +13,14 @@ class UserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, password, **extra_fields):
         if email:
             email = self.normalize_email(email)
-            self.email_validator(email)
+            self.email_validateor(email)
         else:
             raise ValueError(_("An email address is required"))
         if not first_name:
             raise ValueError(_("First name is required"))
         if not last_name:
             raise ValueError(_("Last name is required"))
-        user = self.model(emal=email, first_name=first_name, 
+        user = self.model(email=email, first_name=first_name, 
                 last_name=last_name,**extra_fields )
         user.set_password(password)
         user.save(using=self._db)
@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
             raise ValueError(_("is superuser must be true for admin user"))
                 
         user = self.create_user(
-            email, first_name, last_name, **extra_fields
+            email, first_name, last_name, password, **extra_fields
         )        
         user.save(using=self._db)
         return user
