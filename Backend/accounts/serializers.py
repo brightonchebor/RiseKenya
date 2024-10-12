@@ -38,7 +38,7 @@ class LoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=60, write_only=True)
     full_name = serializers.CharField(max_length=255, read_only=True)
     access_token = serializers.CharField(max_length=255, read_only=True)
-    refresh_token = serializers.CharField(max_lenght=255, read_only=True)
+    refresh_token = serializers.CharField(max_length=255, read_only=True)
 
     class Meta:
         model = User
@@ -53,7 +53,7 @@ class LoginSerializer(serializers.ModelSerializer):
         if not user:
             raise AuthenticationFailed("invalid credentials try again")
 
-        if not user.is_verfied:
+        if not user.is_verified:
             raise AuthenticationFailed("email is not verified")
          
         user_tokens = user.tokens() 
