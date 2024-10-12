@@ -3,6 +3,8 @@ import environ
 
 from pathlib import Path
 
+from datetime import timedelta
+
 
 env = environ.Env(
     # Set casting, default value
@@ -85,6 +87,15 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'accounts.User'
 
+REST_FRAMEWORK = {
+   
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+    
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -135,6 +146,11 @@ DEFAULT_FROM_EMAIL = 'cheborbrighton805@gmail.com'
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    }
 
 
 # Debugging - print email credentials
