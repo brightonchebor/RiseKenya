@@ -60,3 +60,4 @@ class LoginUserView(GenericAPIView):
             }
         )
         serializer.is_valid(raise_exception=True)
+        return serializer.data
